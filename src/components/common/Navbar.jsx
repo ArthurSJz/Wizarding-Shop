@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logo.png";
-import shopping from "../assets/shopping-cart.png";
+import logo from "../../assets/logo.png";
+import shopping from "../../assets/shopping-cart.png";
 
 function Navbar() {
   return (
