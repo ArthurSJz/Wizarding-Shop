@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar'
+import Navbar from './components/common/Navbar'
 import Shop from './pages/Shop'
 import { Routes, Route } from "react-router-dom";
-import Footer from './components/Footer';
+import Footer from './components/common/Footer';
 import Cart from './pages/Cart';
-import AddItem from './pages/AddItem';
 import ItemDetails from './pages/ItemDetails';
-import EditItem from './pages/EditItem';
+import Admin from './pages/Admin';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,10 +19,9 @@ function App() {
         <Routes>
           <Route path='/' element={<Shop/>} />
           <Route path='/cart' element={<Cart/>} />
-          <Route path='/add-item' element={<AddItem/>} />
+          <Route path='/admin' element={<Admin/>} />
           <Route path='/item-details' element={<ItemDetails/>} />
-          <Route path='/edit-item' element={<EditItem/>} />
-
+          
         </Routes>
 
         <Footer/>
