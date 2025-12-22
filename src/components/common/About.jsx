@@ -61,21 +61,23 @@ function About() {
         web development and make it feel as effortless as a wave of a wand.
       </p>
       <table>
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Favorite Spell</th>
-        </tr>
-        <tr>
-          <td>Alexandra</td>
-          <td>Lead Developer</td>
-          <td>Expecto Patronum</td>
-        </tr>
-        <tr>
-          <td>Arthur</td>
-          <td>Lead Developer</td>
-          <td>Accio Code</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Favorite Spell</th>
+          </tr>
+          <tr>
+            <td>Alexandra</td>
+            <td>Lead Developer</td>
+            <td>Expecto Patronum</td>
+          </tr>
+          <tr>
+            <td>Arthur</td>
+            <td>Lead Developer</td>
+            <td>Accio Code</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

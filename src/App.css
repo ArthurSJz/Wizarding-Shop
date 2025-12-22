@@ -192,13 +192,15 @@ main {
   max-width: 300px;
 }
 
-.modal-buttons {
+.modal-buttons,
+.buttons {
   display: flex;
   justify-content: space-around;
   margin-top: 1.5rem;
 }
 
-.btn-confirm {
+.btn-confirm,
+.btn-edit {
   background-color: #c9a24d;
   border: none;
   padding: 0.5rem 1rem;
@@ -206,13 +208,16 @@ main {
   cursor: pointer;
 }
 
-.btn-cancel {
+.btn-cancel,
+.btn-delete {
   background-color: #e94b42;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
 }
+
+/* ADMIN PAGE */
 
 /* ABOUT PAGE */
 .about-page {

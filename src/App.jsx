@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import AddItem from "./components/admin/AddItem";
 import ItemDetails from "./pages/ItemDetails";
 import EditItem from "./components/admin/EditItem";
+import Admin from "./pages/Admin";
 import axios from "axios";
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
               element={<ItemDetails addToCart={addToCart} />}
             />
             <Route path="/edit-item/:id" element={<EditItem />} />
+
+            <Route path="/admin" element={<Admin items={items} />} />
           </Routes>
         </main>
         <Footer />
