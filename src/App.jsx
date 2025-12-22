@@ -75,7 +75,7 @@ function App() {
             />
             <Route path="/add-item" element={<AddItem />} />
             <Route
-              path="/item-details/:id"
+              path="/item-details/:itemId"
               element={<ItemDetails addToCart={addToCart} />}
             />
             <Route path="/edit-item/:id" element={<EditItem />} />

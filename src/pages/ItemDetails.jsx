@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-function ItemDetails() {
+function ItemDetails({ addToCart }) {
   const { itemId } = useParams();
-  const [items, setItems] = useState({});
+  const [item, setItem] = useState({});
+  const nav = useNavigate();
 
   useEffect(() => {
     async function getOneItem() {
       try {
         const { data } = await axios(`http://localhost:5005/items/${itemId}`);
-        setItems(data);
+        setItem(data);
       } catch (error) {
         console.log(error);
       }
@@ -20,16 +21,36 @@ function ItemDetails() {
 
   return (
     <>
-      <div className="card">
-        <div className="card-img">
-          <img src={items.image} alt={items.name} />
+      <div className="details-page">
+        <div className="details-img">
+          <img src={item.image} alt={item.name} />
         </div>
 
-        <div className="card-content">
-          <h3>Name: {items.name}</h3>
-          <h3>Category: {items.category}</h3>
-          <h3>Price: {items.price} €</h3>
-          <h3>Description: {items.description} €</h3>
+        <div className="details-content">
+          <h3>Name: {item.name}</h3>
+          <h3>Category: {item.category}</h3>
+          <h3>Price: {item.price} €</h3>
+          <h3>Description: {item.description}</h3>
+        </div>
+
+        <div className="buttons">
+          <button
+            className="btn-buy"
+            onClick={() => {
+              addToCart(item);
+            }}
+          >
+            Buy it
+          </button>
+
+          <button
+            className="btn-back"
+            onClick={() => {
+              nav(-1);
+            }}
+          >
+            Go Back
+          </button>
         </div>
       </div>
     </>
