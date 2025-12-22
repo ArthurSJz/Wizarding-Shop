@@ -8,7 +8,7 @@ function ItemCard({ item, addToCart }) {
       </div>
       <div className="card-content">
         <h3>{item.name}</h3>
-        <p>Price: {item.price} €</p>
+        <p>{item.price.toFixed(2).replace(".", ",")} €</p>
       </div>
       <button
         className="btn-buy"

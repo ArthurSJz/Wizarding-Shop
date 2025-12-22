@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/common/Navbar";
 import Shop from "./pages/Shop";
-import { Routes, Route } from "react-router-dom";
+import About from "./components/common/About";
 import Footer from "./components/common/Footer";
 import Cart from "./pages/Cart";
 import AddItem from "./components/admin/AddItem";
@@ -61,6 +62,7 @@ function App() {
               path="/"
               element={<Shop items={items} addToCart={addToCart} />}
             />
+            <Route path="/about" element={<About />} />
             <Route
               path="/cart"
               element={
