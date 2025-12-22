@@ -1,11 +1,18 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import ConfirmModal from "../components/common/ConfirmModal";
 
 function ItemDetails({ addToCart }) {
   const { itemId } = useParams();
   const [item, setItem] = useState({});
   const nav = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart(item);
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     async function getOneItem() {
@@ -37,7 +44,7 @@ function ItemDetails({ addToCart }) {
           <button
             className="btn-buy"
             onClick={() => {
-              addToCart(item);
+              setIsModalOpen(true);
             }}
           >
             Buy it
@@ -52,6 +59,13 @@ function ItemDetails({ addToCart }) {
             Go Back
           </button>
         </div>
+
+        <ConfirmModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onConfirm={handleAddToCart}
+          message={`Do you want to add "${item.name}" to the cart?`}
+        />
       </div>
     </>
   );

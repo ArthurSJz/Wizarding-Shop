@@ -1,7 +1,16 @@
 import "../../App.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ConfirmModal from "../common/ConfirmModal";
 
 function ItemCard({ item, addToCart }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart(item);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="card">
       <Link to={`/item-details/${item.id}`}>
@@ -17,11 +26,18 @@ function ItemCard({ item, addToCart }) {
         className="btn-buy"
         onClick={() => {
           console.log("Adding to cart:", item); // debug
-          addToCart(item);
+          setIsModalOpen(true);
         }}
       >
         Buy it
       </button>
+
+      <ConfirmModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onConfirm={handleAddToCart}
+        message={`Do you want to add "${item.name}" to the cart?`}
+      />
     </div>
   );
 }
