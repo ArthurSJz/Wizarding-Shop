@@ -52,7 +52,8 @@ main {
   color: #c9a24d;
 }
 
-.shopping-cart {
+.shopping-cart,
+.logout-icon {
   margin: 0 1rem;
 }
 
@@ -149,7 +150,8 @@ main {
 }
 
 .btn-buy,
-.btn-add {
+.btn-add,
+.btn-login {
   background-color: #c9a24d;
   border: none;
   color: #1c1c1e;
@@ -165,7 +167,8 @@ main {
 }
 
 .btn-buy:hover,
-.btn-buy:focus-visible {
+.btn-buy:focus-visible,
+.btn-login:hover {
   background-color: #e6c97a;
   outline: none;
 }

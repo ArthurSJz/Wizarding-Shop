@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
+import ProtectedRoute from "./components/common/ProtectedRoute";
 import Navbar from "./components/common/Navbar";
 import Shop from "./pages/Shop";
 import About from "./components/common/About";
@@ -9,6 +10,7 @@ import Cart from "./pages/Cart";
 import FormItem from "./components/admin/FormItem";
 import ItemDetails from "./pages/ItemDetails";
 import Admin from "./pages/Admin";
+import Login from "./pages/Login";
 import axios from "axios";
 
 function App() {
@@ -130,10 +132,13 @@ function App() {
               path="/item-details/:itemId"
               element={<ItemDetails addToCart={addToCart} />}
             />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/admin"
               element={
-                <Admin items={items} handleDeleteItem={handleDeleteItem} />
+                <ProtectedRoute>
+                  <Admin items={items} handleDeleteItem={handleDeleteItem} />
+                </ProtectedRoute>
               }
             />
             <Route
