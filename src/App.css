@@ -234,12 +234,12 @@ form {
   justify-content: center;
 }
 
-label {
+form label {
   margin: 5px;
   text-align: left;
 }
 
-input {
+form input {
   width: 100%;
   padding: 12px;
   margin: 8px 0;

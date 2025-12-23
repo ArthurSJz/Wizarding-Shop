@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function AdminItemCard({ item, handleDeleteItem }) {
   return (
     <div className="card">
@@ -5,7 +7,9 @@ function AdminItemCard({ item, handleDeleteItem }) {
       <p>{item.price} €</p>
 
       <div className="buttons">
-        <button className="btn-edit">Edit</button>
+        <Link to={`/edit-item/${item.id}`}>
+          <button className="btn-edit">Edit</button>
+        </Link>
         <button
           className="btn-delete"
           onClick={() => {

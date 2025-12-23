@@ -1,6 +1,117 @@
-function FormItem() {
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
+function FormItem({ items, onSubmit, title }) {
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (title === "edit" && items?.length) {
+      const itemToEdit = items.find((item) => item.id === id);
+
+      if (itemToEdit) {
+        setName(itemToEdit.name || "");
+        setCategory(itemToEdit.category || "");
+        setPrice(itemToEdit.price || 0);
+        setStock(itemToEdit.stock || 0);
+        setDescription(itemToEdit.description || "");
+        setImage(itemToEdit.image || "");
+      }
+    }
+  }, [title, items, id]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const itemData = {
+      name,
+      category,
+      price: Number(price),
+      stock: Number(stock),
+      description,
+      image,
+    };
+
+    if (title === "edit") {
+      onSubmit(e, id, itemData);
+    } else {
+      onSubmit(e, itemData);
+    }
+  }
+
   return (
-    <div>FormItem</div>
-  )
+    <div>
+      <h1>
+        {title === "edit" ? "Edit magic item ✏️" : "Add a new magic item 🔮"}
+      </h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name
+          <input
+            placeholder="Add the name of an item"
+            type="text"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Category
+          <input
+            placeholder="Add the category of an item"
+            type="text"
+            value={category}
+            onChange={(event) => setCategory(event.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Price
+          <input
+            type="number"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Stock
+          <input
+            type="number"
+            value={stock}
+            onChange={(event) => setStock(event.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Description
+          <input
+            placeholder="Add a description for the item"
+            type="text"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+        </label>
+        <label>
+          Image
+          <input
+            placeholder="Use an url for the image"
+            type="text"
+            value={image}
+            onChange={(event) => setImage(event.target.value)}
+          />
+        </label>
+
+        <button className="btn-add">
+          {title === "edit" ? "Save Changes" : "Add Item"}
+        </button>
+      </form>
+    </div>
+  );
 }
-export default FormItem
+export default FormItem;

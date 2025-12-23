@@ -6,9 +6,8 @@ import Shop from "./pages/Shop";
 import About from "./components/common/About";
 import Footer from "./components/common/Footer";
 import Cart from "./pages/Cart";
-import AddItem from "./components/admin/AddItem";
+import FormItem from "./components/admin/FormItem";
 import ItemDetails from "./pages/ItemDetails";
-import EditItem from "./components/admin/EditItem";
 import Admin from "./pages/Admin";
 import axios from "axios";
 
@@ -48,12 +47,34 @@ function App() {
     });
   };
 
-  //ADD + DELETE ITEM
+  //ADD & EDIT + DELETE ITEM
   async function handleAddItem(e, newItem) {
     e.preventDefault();
     try {
       const { data } = await axios.post("http://localhost:5005/items", newItem);
       setItems([data, ...items]);
+      nav("/admin");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleEditItem(e, id, updatedItem) {
+    e.preventDefault();
+    try {
+      const { data } = await axios.put(
+        `http://localhost:5005/items/${id}`,
+        updatedItem
+      );
+      setItems((prevItems) =>
+        prevItems.map((item) => {
+          if (item.id === id) {
+            return data;
+          } else {
+            return item;
+          }
+        })
+      );
       nav("/admin");
     } catch (error) {
       console.log(error);
@@ -115,10 +136,19 @@ function App() {
                 <Admin items={items} handleDeleteItem={handleDeleteItem} />
               }
             />
-            <Route path="/edit-item/:id" element={<EditItem />} />
+            <Route
+              path="/edit-item/:id"
+              element={
+                <FormItem
+                  title="edit"
+                  items={items}
+                  onSubmit={handleEditItem}
+                />
+              }
+            />
             <Route
               path="/add-item"
-              element={<AddItem handleAddItem={handleAddItem} />}
+              element={<FormItem title="add" onSubmit={handleAddItem} />}
             />
           </Routes>
         </main>
