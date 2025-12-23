@@ -225,6 +225,17 @@ main {
 
 /* ADMIN PAGE */
 
+/* ADD ITEM PAGE */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+label {
+  margin: 5px;
+}
+
 /* ABOUT PAGE */
 .about-page {
   width: 60%;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/common/Navbar";
 import Shop from "./pages/Shop";
@@ -15,7 +15,9 @@ import axios from "axios";
 function App() {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+  const nav = useNavigate();
 
+  // CART
   const addToCart = (itemToAdd) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === itemToAdd.id);
@@ -46,6 +48,35 @@ function App() {
     });
   };
 
+  //ADD + DELETE ITEM
+  async function handleAddItem(e, newItem) {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("http://localhost:5005/items", newItem);
+      setItems([data, ...items]);
+      nav("/admin");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleDeleteItem(id) {
+    try {
+      const { data } = await axios.delete(`http://localhost:5005/items/${id}`);
+      console.log("response to delete", data);
+
+      const filteredItems = items.filter((oneItem) => {
+        if (oneItem.id !== id) {
+          return true;
+        }
+      });
+      setItems(filteredItems);
+    } catch (error) {
+      console.log("error", error);
+    }
+  }
+
+  //GET DATA
   useEffect(() => {
     axios
       .get("http://localhost:5005/items/")
@@ -74,16 +105,20 @@ function App() {
                 />
               }
             />
-            <Route path="/add-item" element={<AddItem />} />
             <Route
               path="/item-details/:itemId"
               element={<ItemDetails addToCart={addToCart} />}
             />
-            <Route path="/edit-item/:id" element={<EditItem />} />
-
             <Route
               path="/admin"
-              element={<Admin items={items} setItems={setItems} />}
+              element={
+                <Admin items={items} handleDeleteItem={handleDeleteItem} />
+              }
+            />
+            <Route path="/edit-item/:id" element={<EditItem />} />
+            <Route
+              path="/add-item"
+              element={<AddItem handleAddItem={handleAddItem} />}
             />
           </Routes>
         </main>

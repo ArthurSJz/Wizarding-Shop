@@ -20,7 +20,7 @@ function ItemCard({ item, addToCart }) {
       </Link>
       <div className="card-content">
         <h3>{item.name}</h3>
-        <p>{item.price.toFixed(2).replace(".", ",")} €</p>
+        <p>{(Number(item.price) || 0).toFixed(2).replace(".", ",")} €</p>
       </div>
       <button
         className="btn-buy"

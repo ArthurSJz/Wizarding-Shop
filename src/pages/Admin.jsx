@@ -1,28 +1,13 @@
 import AdminItemCard from "../components/admin/AdminItemCard ";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
-function Admin({ items, setItems }) {
-  async function handleDeleteItem(id) {
-    try {
-      const { data } = await axios.delete(`http://localhost:5005/items/${id}`);
-      console.log("response to delete", data);
-
-      const filteredItems = items.filter((oneItem) => {
-        if (oneItem.id !== id) {
-          return true;
-        }
-      });
-      setItems(filteredItems);
-    } catch (error) {
-      console.log("error", error);
-    }
-  }
-
+function Admin({ items, handleDeleteItem }) {
   return (
     <div className="Admin-page">
       <h1>Admin Page</h1>
-
-      <button className="btn-add">Add Product</button>
+      <Link to={"/add-item"}>
+        <button className="btn-add">Add Product</button>
+      </Link>
       <div className="cards-container">
         {items.map((item) => (
           <AdminItemCard

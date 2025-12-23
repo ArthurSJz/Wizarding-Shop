@@ -10,10 +10,13 @@ function Shop({ items, addToCart }) {
   }
 
   const filteredItems = items.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
-    const matchesCategory = category === "all" || item.category === category;
+    const name = item.name || "";
+    const itemCategory = item.category || "";
+
+    const matchesSearch = name.toLowerCase().includes(search.toLowerCase());
+
+    const matchesCategory = category === "all" || itemCategory === category;
+
     return matchesSearch && matchesCategory;
   });
 
