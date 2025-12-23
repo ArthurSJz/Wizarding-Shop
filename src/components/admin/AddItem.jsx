@@ -10,30 +10,32 @@ function AddItem({ handleAddItem }) {
 
   return (
     <div>
-      <h1>Add a new magic item:</h1>
+      <h1>Add a new magic item 🔮</h1>
       <form
         onSubmit={(e) =>
           handleAddItem(e, { name, category, price, stock, description, image })
         }
       >
         <label>
-          Name:
+          Name
           <input
+            placeholder="Add the name of an item"
             type="text"
             value={name}
             onChange={(event) => setName(event.target.value)}
           />
         </label>
         <label>
-          Category:
+          Category
           <input
+            placeholder="Add the category of an item"
             type="text"
             value={category}
             onChange={(event) => setCategory(event.target.value)}
           />
         </label>
         <label>
-          Price:
+          Price
           <input
             type="number"
             value={price}
@@ -41,7 +43,7 @@ function AddItem({ handleAddItem }) {
           />
         </label>
         <label>
-          Stock:
+          Stock
           <input
             type="number"
             value={stock}
@@ -49,16 +51,18 @@ function AddItem({ handleAddItem }) {
           />
         </label>
         <label>
-          Description:
+          Description
           <input
+            placeholder="Add a description for the item"
             type="text"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />
         </label>
         <label>
-          Image:
+          Image
           <input
+            placeholder="Use an url for the image"
             type="text"
             value={image}
             onChange={(event) => setImage(event.target.value)}

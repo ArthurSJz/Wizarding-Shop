@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function Admin({ items, handleDeleteItem }) {
   return (
     <div className="Admin-page">
-      <h1>Admin Page</h1>
       <Link to={"/add-item"}>
         <button className="btn-add">Add Product</button>
       </Link>
