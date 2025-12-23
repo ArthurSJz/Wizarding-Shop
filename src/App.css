@@ -148,7 +148,8 @@ main {
   padding: 0.5rem;
 }
 
-.btn-buy {
+.btn-buy,
+.btn-add {
   background-color: #c9a24d;
   border: none;
   color: #1c1c1e;
@@ -192,29 +193,34 @@ main {
   max-width: 300px;
 }
 
-.modal-buttons,
+/* .modal-buttons,
 .buttons {
   display: flex;
   justify-content: space-around;
   margin-top: 1.5rem;
-}
+} */
 
 .btn-confirm,
 .btn-edit {
   background-color: #c9a24d;
   border: none;
+  color: #1c1c1e;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+  margin-right: 1rem;
+  font-size: 1rem;
 }
 
 .btn-cancel,
 .btn-delete {
   background-color: #e94b42;
   border: none;
+  color: #1c1c1e;
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 /* ADMIN PAGE */

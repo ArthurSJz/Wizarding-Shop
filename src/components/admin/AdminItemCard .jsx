@@ -1,4 +1,4 @@
-function AdminItemCard({ item }) {
+function AdminItemCard({ item, handleDeleteItem }) {
   return (
     <div className="card">
       <h3>{item.name}</h3>
@@ -6,7 +6,14 @@ function AdminItemCard({ item }) {
 
       <div className="buttons">
         <button className="btn-edit">Edit</button>
-        <button className="btn-delete">Delete</button>
+        <button
+          className="btn-delete"
+          onClick={() => {
+            handleDeleteItem(item.id);
+          }}
+        >
+          Delete
+        </button>
       </div>
     </div>
   );

@@ -81,7 +81,10 @@ function App() {
             />
             <Route path="/edit-item/:id" element={<EditItem />} />
 
-            <Route path="/admin" element={<Admin items={items} />} />
+            <Route
+              path="/admin"
+              element={<Admin items={items} setItems={setItems} />}
+            />
           </Routes>
         </main>
         <Footer />
