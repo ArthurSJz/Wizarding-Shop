@@ -463,3 +463,40 @@ td {
   padding: 0.2rem 0.45rem;
   border-radius: 50%;
 }
+
+/* NOT FOUND PAGE */
+.not-found h1 {
+  color: #c9a24d;
+}
+
+.not-found h2,
+p {
+  color: #e6c97a;
+}
+
+.go-back a {
+  background-color: #1c1c1e;
+  border: 0.005rem solid #c9a24d;
+  color: #c9a24d;
+  padding: 0.9rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bolder;
+  margin: 1rem 1rem 0;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.footsteps {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+}
+
+.footstep {
+  width: 9rem;
+  height: auto;
+}

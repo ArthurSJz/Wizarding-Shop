@@ -12,6 +12,7 @@ import ItemDetails from "./pages/ItemDetails";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import axios from "axios";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -155,6 +156,7 @@ function App() {
               path="/add-item"
               element={<FormItem title="add" onSubmit={handleAddItem} />}
             />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />
