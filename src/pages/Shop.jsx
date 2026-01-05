@@ -2,7 +2,7 @@ import { useState } from "react";
 import ItemCard from "../components/shop/ItemCard";
 import hourglass from "../assets/hourglass-icon.png";
 
-function Shop({ items, addToCart, loading }) {
+function Shop({ items, categories, addToCart, loading }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
 
@@ -37,12 +37,31 @@ function Shop({ items, addToCart, loading }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        {/* <select value={category} onChange={(e) => setCategory(e.target.value)}>
           <option value="all">All</option>
           <option value="wands">Wands</option>
           <option value="potions">Potions</option>
           <option value="books">Books</option>
-        </select>
+        </select> */}
+        <div className="category-pills">
+          <button
+            className={`pill ${category === "all" ? "active" : ""}`}
+            onClick={() => setCategory("all")}
+          >
+            ✨ All
+          </button>
+
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              className={`pill ${category === cat.name ? "active" : ""}`}
+              onClick={() => setCategory(cat.name)}
+            >
+              <span className="pill-icon">{cat.icon || ""}</span>
+              {cat.label || cat.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="cards-container">

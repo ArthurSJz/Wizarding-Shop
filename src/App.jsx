@@ -149,7 +149,12 @@ function App() {
             <Route
               path="/"
               element={
-                <Shop items={items} addToCart={addToCart} loading={loading} />
+                <Shop
+                  items={items}
+                  addToCart={addToCart}
+                  categories={categories}
+                  loading={loading}
+                />
               }
             />
             <Route path="/about" element={<About />} />
