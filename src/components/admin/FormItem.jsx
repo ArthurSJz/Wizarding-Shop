@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function FormItem({ items, onSubmit, title }) {
+function FormItem({ items, categories = [], onSubmit, title }) {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState(0);
@@ -34,7 +34,7 @@ function FormItem({ items, onSubmit, title }) {
       price: Number(price),
       stock: Number(stock),
       description,
-      image,
+      image: image || "/assets/products/placeholder.png",
     };
 
     if (title === "edit") {
@@ -62,13 +62,19 @@ function FormItem({ items, onSubmit, title }) {
         </label>
         <label>
           Category
-          <input
-            placeholder="Add the category of an item"
-            type="text"
+          <select
             value={category}
             onChange={(event) => setCategory(event.target.value)}
             required
-          />
+          >
+            <option value="">Select a category</option>
+            {categories &&
+              categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
+          </select>
         </label>
         <label>
           Price

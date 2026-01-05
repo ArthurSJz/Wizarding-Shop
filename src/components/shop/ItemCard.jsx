@@ -15,7 +15,14 @@ function ItemCard({ item, addToCart }) {
     <div className="card">
       <Link to={`/item-details/${item.id}`}>
         <div className="card-img">
-          <img src={item.image} alt={item.name} />
+          <img
+            src={item.image}
+            alt={item.name}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "/assets/products/placeholder.png";
+            }}
+          />
         </div>
       </Link>
       <div className="card-content">

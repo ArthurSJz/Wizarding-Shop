@@ -17,6 +17,7 @@ import Toast from "./components/toast/Toast";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [cart, setCart] = useState([]);
   const [toast, setToast] = useState({ message: "", type: "success" });
   const [loading, setLoading] = useState(true);
@@ -114,11 +115,27 @@ function App() {
   }
 
   //GET DATA
+  // useEffect(() => {
+  //   setLoading(true);
+  //   axios
+  //     .get("http://localhost:5005/items/")
+  //     .then(({ data }) => setItems(data))
+  //     .catch((err) => console.log(err))
+  //     .finally(() => setLoading(false));
+  // }, []);
+
+  //PROMISSE ALL
   useEffect(() => {
     setLoading(true);
-    axios
-      .get("http://localhost:5005/items/")
-      .then(({ data }) => setItems(data))
+
+    Promise.all([
+      axios.get("http://localhost:5005/items/"),
+      axios.get("http://localhost:5005/categories/"),
+    ])
+      .then(([itemsRes, categoriesRes]) => {
+        setItems(itemsRes.data);
+        setCategories(categoriesRes.data);
+      })
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   }, []);
@@ -165,13 +182,20 @@ function App() {
                 <FormItem
                   title="edit"
                   items={items}
+                  categories={categories}
                   onSubmit={handleEditItem}
                 />
               }
             />
             <Route
               path="/add-item"
-              element={<FormItem title="add" onSubmit={handleAddItem} />}
+              element={
+                <FormItem
+                  title="add"
+                  categories={categories}
+                  onSubmit={handleAddItem}
+                />
+              }
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

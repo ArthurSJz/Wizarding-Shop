@@ -8,7 +8,7 @@ function Navbar({ cart = [] }) {
 
   const activeClass = ({ isActive }) => (isActive ? "active-link" : "");
 
-  const isAdmin = localStorage.getItem("isAdmin");
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
 
   return (
     <div className="navbar">
@@ -22,16 +22,17 @@ function Navbar({ cart = [] }) {
         <NavLink to="/" className={activeClass}>
           Home
         </NavLink>
+
         <NavLink to="/about" className={activeClass}>
           About
         </NavLink>
+
         {!isAdmin && (
           <NavLink to="/admin" className={activeClass}>
             Admin
           </NavLink>
         )}
 
-        {isAdmin && <Logout />}
         {!isAdmin && (
           <NavLink to="/cart" className="cart-link" aria-label="Go to cart">
             <img src={shopping} className="shopping-cart" alt="shopping cart" />
@@ -45,6 +46,8 @@ function Navbar({ cart = [] }) {
             )}
           </NavLink>
         )}
+
+        {isAdmin && <Logout />}
       </div>
     </div>
   );
