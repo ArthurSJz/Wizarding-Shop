@@ -362,6 +362,19 @@ td {
   }
 }
 
+.search-bar {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  font-size: 1rem;
+  background-color: #2a2a2d;
+  color: #ededed;
+  border: 1px solid #3a3a3d;
+  border-radius: 0.25rem;
+  background-image: url("../src/assets/search.png");
+  background-size: 1rem;
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
 .category-pills {
   display: flex;
   gap: 0.75rem;

@@ -32,17 +32,12 @@ function Shop({ items, categories, addToCart, loading }) {
     <div className="shop-page">
       <div className="shop-controls">
         <input
+          className="search-bar"
           type="text"
           placeholder="Search magical items..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        {/* <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="all">All</option>
-          <option value="wands">Wands</option>
-          <option value="potions">Potions</option>
-          <option value="books">Books</option>
-        </select> */}
         <div className="category-pills">
           <button
             className={`pill ${category === "all" ? "active" : ""}`}
