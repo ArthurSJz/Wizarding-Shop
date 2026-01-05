@@ -1,12 +1,20 @@
 import { useState } from "react";
 import ItemCard from "../components/shop/ItemCard";
+import hourglass from "../assets/hourglass-icon.png";
 
-function Shop({ items, addToCart }) {
+function Shop({ items, addToCart, loading }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
 
-  if (!items.length) {
-    return <p>Loading magical items...</p>;
+  const dumbledoreGif =
+    "https://tenor.com/view/dumbledore-well-i-tried-whatever-harry-potter-gif-15849262.gif";
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <img src={hourglass} alt="Loading..." className="hourglass-spinner" />
+      </div>
+    );
   }
 
   const filteredItems = items.filter((item) => {
@@ -38,7 +46,16 @@ function Shop({ items, addToCart }) {
       </div>
 
       <div className="cards-container">
-        {filteredItems.length === 0 && <p>No magical items found 🧙‍♂️</p>}
+        {filteredItems.length === 0 && (
+          <div className="no-items-found">
+            <p>No magical items found 🧙‍♂️</p>
+            <img
+              src={dumbledoreGif}
+              alt="dumbledore shrugging"
+              className="no-items-found-gif"
+            />
+          </div>
+        )}
         {filteredItems.map((item) => (
           <ItemCard key={item.id} item={item} addToCart={addToCart} />
         ))}

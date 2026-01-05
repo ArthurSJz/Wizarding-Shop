@@ -13,10 +13,13 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
+import Toast from "./components/toast/Toast";
 
 function App() {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
+  const [toast, setToast] = useState({ message: "", type: "success" });
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
 
   // CART
@@ -50,15 +53,21 @@ function App() {
     });
   };
 
+  function showToast(message, type = "success") {
+    setToast({ message, type });
+  }
+
   //ADD & EDIT + DELETE ITEM
   async function handleAddItem(e, newItem) {
     e.preventDefault();
     try {
       const { data } = await axios.post("http://localhost:5005/items", newItem);
       setItems([data, ...items]);
+      showToast("Item added successfully", "success");
       nav("/admin");
     } catch (error) {
       console.log(error);
+      showToast("Failed to add item", "error");
     }
   }
 
@@ -78,9 +87,11 @@ function App() {
           }
         })
       );
+      showToast("Item updated successfully!", "success");
       nav("/admin");
     } catch (error) {
       console.log(error);
+      showToast("Failed to update item", "error");
     }
   }
 
@@ -95,17 +106,21 @@ function App() {
         }
       });
       setItems(filteredItems);
+      showToast("Item deleted successfully!", "success");
     } catch (error) {
       console.log("error", error);
+      showToast("Failed to delete item", "error");
     }
   }
 
   //GET DATA
   useEffect(() => {
+    setLoading(true);
     axios
       .get("http://localhost:5005/items/")
       .then(({ data }) => setItems(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -116,7 +131,9 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Shop items={items} addToCart={addToCart} />}
+              element={
+                <Shop items={items} addToCart={addToCart} loading={loading} />
+              }
             />
             <Route path="/about" element={<About />} />
             <Route
@@ -161,6 +178,13 @@ function App() {
         </main>
         <Footer />
       </div>
+      {toast.message && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ message: "", type: "success" })}
+        />
+      )}
     </>
   );
 }

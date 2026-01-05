@@ -66,7 +66,8 @@ main {
 .logo:hover {
   filter: drop-shadow(0 0 2em #c9a24d);
 }
-.logo.react:hover {
+
+.logo:hover {
   filter: drop-shadow(0 0 2em #e6c97a);
 }
 
@@ -174,7 +175,6 @@ main {
 }
 
 /* MODAL COMPONENT */
-
 .modal-box {
   position: fixed;
   top: 0;
@@ -285,7 +285,6 @@ td {
 }
 
 /* FOOTER */
-
 .footer {
   text-align: center;
   padding: 2rem;
@@ -299,7 +298,7 @@ td {
   cursor: pointer;
 }
 
-/* SearchBar + Filter */
+/* SHOP PAGE */
 .shop-controls {
   display: flex;
   gap: 1rem;
@@ -326,6 +325,40 @@ td {
 .shop-controls select:focus-visible {
   outline: 2px solid #c9a24d;
   outline-offset: 2px;
+}
+
+.no-items-found {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6.25rem;
+  gap: 2rem;
+}
+
+.hourglass-spinner {
+  width: 9rem;
+  height: auto;
+  animation: spin 1.5s linear infinite;
+  transform-origin: center;
+  filter: drop-shadow(0 0 2em #c9a24d);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* MOBILE ACCESSIBILITY */
