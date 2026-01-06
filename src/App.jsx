@@ -15,7 +15,7 @@ import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
 import Toast from "./components/toast/Toast";
 import WizardBot from "./components/chat/WizardBot.jsx";
-import wizardIcon from "../public/assets/wizard-bot.png";
+import wizardIcon from "/assets/wizard-bot.png";
 import Favorites from "./pages/Favorites";
 
 function App() {

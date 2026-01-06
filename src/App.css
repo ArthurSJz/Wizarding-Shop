@@ -169,7 +169,8 @@ main {
 
 .btn-buy,
 .btn-add,
-.btn-login {
+.btn-login,
+.btn-checkout {
   background-color: #c9a24d;
   border: none;
   color: #1c1c1e;
@@ -186,7 +187,8 @@ main {
 
 .btn-buy:hover,
 .btn-buy:focus-visible,
-.btn-login:hover {
+.btn-login:hover,
+.btn-checkout:hover {
   background-color: #e6c97a;
   outline: none;
 }
@@ -526,6 +528,12 @@ td {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ededed;
+}
+
+.payment-success {
+  margin-top: 1rem;
+  color: #e6c97a;
+  font-weight: bold;
 }
 
 /* RESPONSIVE MOBILE */
