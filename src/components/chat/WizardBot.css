@@ -1,44 +1,49 @@
 .wizardbot-container {
-  width: 19rem;
+  width: 20rem;
+  max-width: 90vw;
   position: fixed;
-  bottom: 1.25rem;
-  right: 1.25rem;
+  bottom: 6rem;
+  right: 2rem;
   border: 0.12rem solid #3a3a3d;
-  border-radius: 0.65rem;
+  border-radius: 1rem;
   background: #2a2a2d;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 0 0.65rem #e6c97a40;
+  box-shadow: 0 0 1rem #e6c97a40;
+  z-index: 1000;
 }
 
 .wizardbot-messages {
   padding: 0.65rem;
   height: 16rem;
   overflow-y: auto;
-  /* gap: 0.65rem; */
+  display: flex;
+  flex-direction: column;
 }
 
 .user {
+  align-self: flex-end;
   margin: 0.32rem 0;
-  color: #ededed;
+  color: #1c1c1e;
   background: #c9a24d;
-  /* display: inline-block; */
   padding: 0.32rem 0.65rem;
   border-radius: 0.9rem;
+  max-width: 80%;
+  word-wrap: break-word;
   text-align: right;
-  margin-bottom: 0.5rem;
 }
 
 .bot {
-  text-align: left;
+  align-self: flex-start;
   margin: 0.32rem 0;
   color: #ededed;
   background: #3a3a3d;
-  /* display: inline-block; */
   padding: 0.32rem 0.65rem;
   border-radius: 0.9rem;
-  margin-bottom: 0.5rem;
+  max-width: 80%;
+  word-wrap: break-word;
+  text-align: left;
 }
 
 .wizardbot-input {

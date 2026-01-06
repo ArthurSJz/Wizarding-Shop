@@ -15,7 +15,7 @@ import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
 import Toast from "./components/toast/Toast";
 import WizardBot from "./components/chat/WizardBot.jsx";
-// import wizardIcon from "assets/wizard-bot.png";
+import wizardIcon from "../public/assets/wizard-bot.png";
 import Favorites from "./pages/Favorites";
 
 function App() {
@@ -172,9 +172,6 @@ function App() {
       <Navbar cart={cart} />
       <div className="page-container">
         <main>
-          <div className="wizardbot-icon" onClick={toggleChat}>
-            {/* <img src={wizardIcon} alt="Wizard Bot" /> */}
-          </div>
           <Routes>
             <Route
               path="/"
@@ -248,7 +245,12 @@ function App() {
               }
             />
           </Routes>
-          <WizardBot />
+
+          <div className="wizardbot-icon" onClick={toggleChat}>
+            <img src={wizardIcon} alt="Wizard Bot" />
+          </div>
+
+          {showChat && <WizardBot />}
         </main>
         <Footer />
       </div>
