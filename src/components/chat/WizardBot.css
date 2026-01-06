@@ -1,0 +1,76 @@
+.wizardbot-container {
+  width: 19rem;
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  border: 0.12rem solid #3a3a3d;
+  border-radius: 0.65rem;
+  background: #2a2a2d;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 0.65rem #e6c97a40;
+}
+
+.wizardbot-messages {
+  padding: 0.65rem;
+  height: 16rem;
+  overflow-y: auto;
+  /* gap: 0.65rem; */
+}
+
+.user {
+  margin: 0.32rem 0;
+  color: #ededed;
+  background: #c9a24d;
+  /* display: inline-block; */
+  padding: 0.32rem 0.65rem;
+  border-radius: 0.9rem;
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+.bot {
+  text-align: left;
+  margin: 0.32rem 0;
+  color: #ededed;
+  background: #3a3a3d;
+  /* display: inline-block; */
+  padding: 0.32rem 0.65rem;
+  border-radius: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.wizardbot-input {
+  display: flex;
+  border-top: 0.065rem solid #3a3a3d;
+}
+
+.wizardbot-input input {
+  flex: 1;
+  padding: 0.9rem;
+  border: none;
+  outline: none;
+  background: #1c1c1e;
+  color: #ededed;
+  font-size: 1rem;
+}
+
+.wizardbot-input input::placeholder {
+  color: #b5b5b5;
+}
+
+.wizardbot-input button {
+  padding: 0.65rem 1rem;
+  background: #c9a24d;
+  color: #1c1c1e;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.wizardbot-input button:hover {
+  background: #9e7c32;
+}

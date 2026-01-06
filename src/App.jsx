@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
 import Toast from "./components/toast/Toast";
+import WizardBot from "./components/chat/WizardBot.jsx";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -204,6 +205,7 @@ function App() {
             />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
+          <WizardBot />
         </main>
         <Footer />
       </div>
