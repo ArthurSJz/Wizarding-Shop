@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ConfirmModal from "../components/common/ConfirmModal";
 
-function ItemDetails({ addToCart }) {
+function ItemDetails({ addToCart, categories }) {
   const { itemId } = useParams();
   const [item, setItem] = useState({});
   const nav = useNavigate();
@@ -13,6 +13,8 @@ function ItemDetails({ addToCart }) {
     addToCart(item);
     setIsModalOpen(false);
   };
+
+  const itemCategory = categories?.find((cat) => cat.name === item.category);
 
   useEffect(() => {
     async function getOneItem() {
@@ -34,30 +36,37 @@ function ItemDetails({ addToCart }) {
         </div>
 
         <div className="details-content">
-          <h3>Name: {item.name}</h3>
-          <h3>Category: {item.category}</h3>
-          <h3>Price: {item.price} €</h3>
+          <h3 className="details-title">{item.name}</h3>
+          {itemCategory && (
+            <div className="pill">
+              {itemCategory.icon && (
+                <span className="pill-icon">{itemCategory.icon}</span>
+              )}
+              {itemCategory.name}
+            </div>
+          )}
+          <h3>€ {item.price} EUR</h3>
           <h3>Description: {item.description}</h3>
-        </div>
 
-        <div className="buttons">
-          <button
-            className="btn-buy"
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            Buy it
-          </button>
+          <div className="buttons">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Buy it
+            </button>
 
-          <button
-            className="btn-back"
-            onClick={() => {
-              nav(-1);
-            }}
-          >
-            Go Back
-          </button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                nav(-1);
+              }}
+            >
+              Go Back
+            </button>
+          </div>
         </div>
 
         <ConfirmModal

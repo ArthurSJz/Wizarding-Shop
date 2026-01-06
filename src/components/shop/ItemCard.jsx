@@ -39,10 +39,7 @@ function ItemCard({ item, addToCart, isFavorite, toggleFavorite }) {
         <p>{(Number(item.price) || 0).toFixed(2).replace(".", ",")} €</p>
       </div>
 
-      <button
-        className="btn-buy"
-        onClick={() => setIsModalOpen(true)}
-      >
+      <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>
         Buy it
       </button>
 

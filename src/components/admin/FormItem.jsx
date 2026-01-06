@@ -113,7 +113,7 @@ function FormItem({ items, categories = [], onSubmit, title }) {
           />
         </label>
 
-        <button className="btn-add">
+        <button className="btn btn-primary">
           {title === "edit" ? "Save Changes" : "Add Item"}
         </button>
       </form>

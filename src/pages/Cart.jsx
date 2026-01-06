@@ -36,7 +36,7 @@ function Cart({ cart, addToCart, removeFromCart }) {
       <h3 className="cart-total">Total: {total.toFixed(2)} €</h3>
 
       {!paymentSuccess ? (
-        <button className="btn-checkout" onClick={handlePayment}>
+        <button className="btn btn-primary" onClick={handlePayment}>
           🪄 Pay Now
         </button>
       ) : (

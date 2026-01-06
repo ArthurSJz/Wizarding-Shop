@@ -5,7 +5,7 @@ function Admin({ items, handleDeleteItem }) {
   return (
     <div className="Admin-page">
       <Link to={"/add-item"}>
-        <button className="btn-add">Add Product</button>
+        <button className="btn btn-primary">Add Product</button>
       </Link>
       <div className="cards-container">
         {items.map((item) => (

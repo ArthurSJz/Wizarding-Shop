@@ -7,11 +7,11 @@ function AdminItemCard({ item, handleDeleteItem }) {
       <p>{item.price} €</p>
 
       <div className="buttons">
-        <Link to={`/edit-item/${item.id}`}>
-          <button className="btn-edit">Edit</button>
+        <Link to={`/edit-item/${item.id}`} className="btn btn-secondary">
+          Edit
         </Link>
         <button
-          className="btn-delete"
+          className="btn btn-danger"
           onClick={() => {
             handleDeleteItem(item.id);
           }}

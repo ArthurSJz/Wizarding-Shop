@@ -27,6 +27,73 @@ main {
   flex: 1;
 }
 
+/* BASE BUTTON — used everywhere */
+.btn {
+  min-width: 12rem;
+  height: 3rem;
+
+  background-color: #c9a24d;
+  border: none;
+  color: #1c1c1e;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  background-color: #e6c97a;
+  outline: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* buy/add button */
+.btn-primary {
+  background-color: #c9a24d;
+  color: #1c1c1e;
+}
+
+.btn-primary:hover {
+  background-color: #9e7c32;
+}
+
+/* Go back button */
+.btn-secondary {
+  background-color: #1c1c1e;
+  border: 1px solid #c9a24d;
+  color: #c9a24d;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: #3a3a3d;
+  outline: none;
+}
+
+/* Danger/delete */
+.btn-danger {
+  background-color: #6f1d1b;
+  border: none;
+  color: #b5b5b5;
+}
+
+.btn-danger:hover {
+  background-color: #8a2a2a;
+  outline: none;
+}
+
 /* NAVIGATION */
 .navbar {
   display: flex;
@@ -105,23 +172,63 @@ main {
 }
 
 /* ITEM DETAILS */
-.details-content {
-  text-align: center;
+.details-page {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  padding: 2rem;
+  background: #1c1c1e;
+  color: #ededed;
 }
 
-.btn-back {
-  background-color: #1c1c1e;
-  border: 0.005rem solid #c9a24d;
+.details-img {
+  flex: 1 1 300px;
+  max-width: 400px;
+}
+
+.details-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  object-fit: cover;
+  box-shadow: 0 0 1rem #e6c97a40;
+}
+
+.details-content {
+  flex: 2 1 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.details-content h3 {
+  margin: 0.5rem 0;
+}
+
+.details-title {
   color: #c9a24d;
-  padding: 0.9rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: bolder;
-  margin: 1rem 1rem 0;
-  cursor: pointer;
-  border-radius: 0.25rem;
+  font-size: 2rem;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.details-content .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: 4rem;
+  white-space: nowrap;
+}
+
+.details-content .buttons .btn {
+  max-width: 8rem;
 }
 
 /* ITEM CARD COMPONENT */
@@ -146,8 +253,7 @@ main {
   text-align: left;
 }
 
-.card-img,
-.details-img {
+.card-img {
   width: 100%;
   height: 300px;
   display: flex;
@@ -158,39 +264,12 @@ main {
   /* background-color: white; */
 }
 
-.card-img img,
-.details-img img {
+.card-img img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: 0.25rem;
   padding: 0.5rem;
-}
-
-.btn-buy,
-.btn-add,
-.btn-login,
-.btn-checkout {
-  background-color: #c9a24d;
-  border: none;
-  color: #1c1c1e;
-  padding: 0.9rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 1rem;
-  font-weight: bolder;
-  margin: 1rem 0 0;
-  cursor: pointer;
-  border-radius: 0.25rem;
-}
-
-.btn-buy:hover,
-.btn-buy:focus-visible,
-.btn-login:hover,
-.btn-checkout:hover {
-  background-color: #e6c97a;
-  outline: none;
 }
 
 /* MODAL COMPONENT */
@@ -215,34 +294,12 @@ main {
   max-width: 300px;
 }
 
-/* .modal-buttons,
-.buttons {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1.5rem;
-} */
-
-.btn-confirm,
-.btn-edit {
-  background-color: #c9a24d;
-  border: none;
-  color: #1c1c1e;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  margin-right: 1rem;
-  font-size: 1rem;
-}
-
-.btn-cancel,
-.btn-delete {
-  background-color: #e94b42;
-  border: none;
-  color: #1c1c1e;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 1rem;
+.modal-content {
+  background-color: #2a2a2d;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  max-width: 300px;
 }
 
 /* ADMIN PAGE */

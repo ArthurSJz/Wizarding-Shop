@@ -200,7 +200,9 @@ function App() {
             />
             <Route
               path="/item-details/:itemId"
-              element={<ItemDetails addToCart={addToCart} />}
+              element={
+                <ItemDetails addToCart={addToCart} categories={categories} />
+              }
             />
             <Route path="/login" element={<Login />} />
             <Route
