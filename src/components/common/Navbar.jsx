@@ -26,7 +26,7 @@ function Navbar({ cart = [] }) {
         <NavLink to="/about" className={activeClass}>
           About
         </NavLink>
-        
+
         <NavLink to="/favorites">Favorites ❤️ </NavLink>
 
         {!isAdmin && (

@@ -15,6 +15,7 @@ import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
 import Toast from "./components/toast/Toast";
 import WizardBot from "./components/chat/WizardBot.jsx";
+// import wizardIcon from "assets/wizard-bot.png";
 import Favorites from "./pages/Favorites";
 
 function App() {
@@ -23,7 +24,10 @@ function App() {
   const [cart, setCart] = useState([]);
   const [toast, setToast] = useState({ message: "", type: "success" });
   const [loading, setLoading] = useState(true);
+  const [showChat, setShowChat] = useState(false);
   const nav = useNavigate();
+
+  const toggleChat = () => setShowChat((prev) => !prev);
 
   // FAVORITES
   const [favorites, setFavorites] = useState([]);
@@ -168,6 +172,9 @@ function App() {
       <Navbar cart={cart} />
       <div className="page-container">
         <main>
+          <div className="wizardbot-icon" onClick={toggleChat}>
+            {/* <img src={wizardIcon} alt="Wizard Bot" /> */}
+          </div>
           <Routes>
             <Route
               path="/"
