@@ -40,7 +40,7 @@ function Login() {
           />
         </label>
 
-        <button className="btn-login">Login</button>
+        <button className="btn btn-primary">Login</button>
       </form>
     </div>
   );
