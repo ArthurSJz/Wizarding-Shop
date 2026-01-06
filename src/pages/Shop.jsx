@@ -2,7 +2,7 @@ import { useState } from "react";
 import ItemCard from "../components/shop/ItemCard";
 import hourglass from "../assets/hourglass-icon.png";
 
-function Shop({ items, categories, addToCart, loading }) {
+function Shop({ items, categories, addToCart, loading, favorites, toggleFavorite }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
 
@@ -18,12 +18,10 @@ function Shop({ items, categories, addToCart, loading }) {
   }
 
   const filteredItems = items.filter((item) => {
-    const name = item.name || "";
-    const itemCategory = item.category || "";
+    if (!item?.name || !item?.category) return false;
 
-    const matchesSearch = name.toLowerCase().includes(search.toLowerCase());
-
-    const matchesCategory = category === "all" || itemCategory === category;
+    const matchesSearch = item.name.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = category === "all" || item.category === category;
 
     return matchesSearch && matchesCategory;
   });
@@ -38,6 +36,7 @@ function Shop({ items, categories, addToCart, loading }) {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+
         <div className="category-pills">
           <button
             className={`pill ${category === "all" ? "active" : ""}`}
@@ -70,8 +69,15 @@ function Shop({ items, categories, addToCart, loading }) {
             />
           </div>
         )}
+
         {filteredItems.map((item) => (
-          <ItemCard key={item.id} item={item} addToCart={addToCart} />
+          <ItemCard
+            key={item.id}
+            item={item}
+            addToCart={addToCart}
+            isFavorite={favorites.includes(item.id)}
+            toggleFavorite={toggleFavorite}
+          />
         ))}
       </div>
     </div>

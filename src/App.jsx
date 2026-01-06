@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import axios from "axios";
 import NotFoundPage from "./pages/NotFoundPage";
 import Toast from "./components/toast/Toast";
+import Favorites from "./pages/Favorites";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -22,6 +23,27 @@ function App() {
   const [toast, setToast] = useState({ message: "", type: "success" });
   const [loading, setLoading] = useState(true);
   const nav = useNavigate();
+
+  // FAVORITES
+  const [favorites, setFavorites] = useState([]);
+  useEffect(() => {
+    const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+    if (storedFavorites) {
+      setFavorites(storedFavorites);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  function toggleFavorite(itemId) {
+    setFavorites((prevFavorites) =>
+      prevFavorites.includes(itemId)
+        ? prevFavorites.filter((id) => id !== itemId)
+        : [...prevFavorites, itemId]
+    );
+  }
 
   // CART
   const addToCart = (itemToAdd) => {
@@ -154,9 +176,12 @@ function App() {
                   addToCart={addToCart}
                   categories={categories}
                   loading={loading}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
                 />
               }
             />
+
             <Route path="/about" element={<About />} />
             <Route
               path="/cart"
@@ -203,6 +228,17 @@ function App() {
               }
             />
             <Route path="*" element={<NotFoundPage />} />
+            <Route
+              path="/favorites"
+              element={
+                <Favorites
+                  items={items}
+                  favorites={favorites}
+                  addToCart={addToCart}
+                  toggleFavorite={toggleFavorite}
+                />
+              }
+            />
           </Routes>
         </main>
         <Footer />

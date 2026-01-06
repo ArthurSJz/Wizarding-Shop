@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import ConfirmModal from "../common/ConfirmModal";
 
-function ItemCard({ item, addToCart }) {
+function ItemCard({ item, addToCart, isFavorite, toggleFavorite }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAddToCart = () => {
@@ -13,6 +13,14 @@ function ItemCard({ item, addToCart }) {
 
   return (
     <div className="card">
+      {/* Favorite button */}
+      <button
+        className={`favorite-btn ${isFavorite ? "active" : ""}`}
+        onClick={() => toggleFavorite(item.id)}
+      >
+        {isFavorite ? "❤️" : "🤍"}
+      </button>
+
       <Link to={`/item-details/${item.id}`}>
         <div className="card-img">
           <img
@@ -25,16 +33,15 @@ function ItemCard({ item, addToCart }) {
           />
         </div>
       </Link>
+
       <div className="card-content">
         <h3>{item.name}</h3>
         <p>{(Number(item.price) || 0).toFixed(2).replace(".", ",")} €</p>
       </div>
+
       <button
         className="btn-buy"
-        onClick={() => {
-          console.log("Adding to cart:", item); // debug
-          setIsModalOpen(true);
-        }}
+        onClick={() => setIsModalOpen(true)}
       >
         Buy it
       </button>

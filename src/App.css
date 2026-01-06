@@ -581,3 +581,19 @@ p {
   width: 9rem;
   height: auto;
 }
+
+/* favorite button */
+.favorite-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+}
+
+.favorite-btn.active {
+  color: red;
+}
