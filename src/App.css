@@ -602,3 +602,7 @@ p {
 .favorite-btn.active {
   color: red;
 }
+
+.card {
+  position: relative;
+}
