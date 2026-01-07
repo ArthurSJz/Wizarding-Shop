@@ -329,6 +329,47 @@ form select {
   box-sizing: border-box;
 }
 
+form .file-upload {
+  position: relative;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+form .file-input {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+form .file-upload-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border: 0.12rem dashed #c9a24d;
+  border-radius: 0.5rem;
+  background-color: #2a2a2d;
+  color: #ededed;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+form .file-upload-label:hover {
+  background-color: #3a3a3d;
+  border-color: #e6c97a;
+}
+
+form .file-name {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #c9a24d;
+}
+
 form .btn {
   width: 100%;
   min-width: unset;

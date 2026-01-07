@@ -103,14 +103,15 @@ function FormItem({ items, categories = [], onSubmit, title }) {
             onChange={(event) => setDescription(event.target.value)}
           />
         </label>
-        <label>
-          Image
+        <label className="file-upload">
+          <span className="file-upload-label">Choose an image</span>
           <input
-            placeholder="Use an url for the image"
             type="file"
+            className="file-input"
             name="image"
             onChange={(event) => setImage(event.target.files[0])}
           />
+          {image && <span className="file-name">{image.name}</span>}
         </label>
 
         <button className="btn btn-primary">
