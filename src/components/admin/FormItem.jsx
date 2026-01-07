@@ -107,9 +107,9 @@ function FormItem({ items, categories = [], onSubmit, title }) {
           Image
           <input
             placeholder="Use an url for the image"
-            type="text"
-            value={image}
-            onChange={(event) => setImage(event.target.value)}
+            type="file"
+            name="image"
+            onChange={(event) => setImage(event.target.files[0])}
           />
         </label>
 

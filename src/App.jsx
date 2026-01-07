@@ -89,7 +89,20 @@ function App() {
   async function handleAddItem(e, newItem) {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:5005/items", newItem);
+      //this is where we handle the image
+      const imageData = new FormData();
+      imageData.append("file", newItem.image);
+      imageData.append("upload_preset", "Wizarding-Shop");
+      imageData.append("cloud_name", "dxigeridm");
+      const cloudinaryResponse = await axios.post(
+        "https://api.cloudinary.com/v1_1/dxigeridm/image/upload",
+        imageData
+      );
+
+      const { data } = await axios.post("http://localhost:5005/items", {
+        ...newItem,
+        image: cloudinaryResponse.data.secure_url,
+      });
       setItems([data, ...items]);
       showToast("Item added successfully", "success");
       nav("/admin");
@@ -260,6 +273,7 @@ function App() {
         <Toast
           message={toast.message}
           type={toast.type}
+          duration={3000}
           onClose={() => setToast({ message: "", type: "success" })}
         />
       )}
