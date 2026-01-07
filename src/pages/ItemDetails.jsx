@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ConfirmModal from "../components/common/ConfirmModal";
+import { API_URL } from "../config/apiConfig";
 
 function ItemDetails({ addToCart, categories }) {
   const { itemId } = useParams();
@@ -19,7 +20,7 @@ function ItemDetails({ addToCart, categories }) {
   useEffect(() => {
     async function getOneItem() {
       try {
-        const { data } = await axios(`http://localhost:5005/items/${itemId}`);
+        const { data } = await axios(`${API_URL}/items/${itemId}`);
         setItem(data);
       } catch (error) {
         console.log(error);

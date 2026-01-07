@@ -17,6 +17,7 @@ import Toast from "./components/toast/Toast";
 import WizardBot from "./components/chat/WizardBot.jsx";
 import wizardIcon from "/assets/wizard-bot.png";
 import Favorites from "./pages/Favorites";
+import { API_URL } from "./config/apiConfig.js";
 
 function App() {
   const [items, setItems] = useState([]);
@@ -99,7 +100,7 @@ function App() {
         imageData
       );
 
-      const { data } = await axios.post("http://localhost:5005/items", {
+      const { data } = await axios.post(`${API_URL}/items`, {
         ...newItem,
         image: cloudinaryResponse.data.secure_url,
       });
@@ -116,7 +117,7 @@ function App() {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `http://localhost:5005/items/${id}`,
+        `${API_URL}/items/${id}`,
         updatedItem
       );
       setItems((prevItems) =>
@@ -138,7 +139,7 @@ function App() {
 
   async function handleDeleteItem(id) {
     try {
-      const { data } = await axios.delete(`http://localhost:5005/items/${id}`);
+      const { data } = await axios.delete(`${API_URL}/items/${id}`);
       console.log("response to delete", data);
 
       const filteredItems = items.filter((oneItem) => {
@@ -154,23 +155,13 @@ function App() {
     }
   }
 
-  //GET DATA
-  // useEffect(() => {
-  //   setLoading(true);
-  //   axios
-  //     .get("http://localhost:5005/items/")
-  //     .then(({ data }) => setItems(data))
-  //     .catch((err) => console.log(err))
-  //     .finally(() => setLoading(false));
-  // }, []);
-
   //PROMISSE ALL
   useEffect(() => {
     setLoading(true);
 
     Promise.all([
-      axios.get("http://localhost:5005/items/"),
-      axios.get("http://localhost:5005/categories/"),
+      axios.get(`${API_URL}/items/`),
+      axios.get(`${API_URL}/categories/`),
     ])
       .then(([itemsRes, categoriesRes]) => {
         setItems(itemsRes.data);
